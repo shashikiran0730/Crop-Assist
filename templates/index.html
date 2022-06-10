@@ -1,0 +1,93 @@
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Assist</title>
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <link rel="stylesheet" href="{% static 'css/fert.css' %}">
+    <link rel="stylesheet" href="{% static 'css/croprecomnder.css' %}">
+    <link rel="stylesheet" href="{% static 'css/leaf.css' %}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+    <div class="bod">
+        <nav class="nav" id="nav">
+            <div id="logo">Crop Assist</div>
+        </nav>
+        <div class="home">
+
+        </div>
+        <div class="cardcon">
+            <div class="card close" id="croprec">
+                <div class="cls">+</div>
+                <div class="dis">
+                    Check which crop is suitable for your land
+                </div>
+                <div class="hid">
+                    {%include 'croprecomnder.html'%}
+                </div>
+            </div>
+            <div class="card close">
+                <div class="cls">+</div>
+                <div class="dis">
+                    Check your crop health
+                </div>
+                <div class="hid">
+                    {%include 'fert.html'%}
+                </div>
+            </div>
+            <div class="card close">
+                <div class="cls">+</div>
+                <div class="dis">
+                    Check leaf desease
+                </div>
+                <div class="hid">
+                    {%include 'leafdisplay.html'%}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="pad">
+
+    </div>
+    <script>
+        document.querySelectorAll(".card").forEach(ele => {
+            ele.addEventListener("click", (e) => {
+                open(e)
+            })
+        })
+        document.querySelectorAll(".dis").forEach(ele => {
+            ele.addEventListener("click", (e) => {
+                e.srcElement.parentElement.click()
+            })
+        })
+        document.querySelectorAll(".cls").forEach(ele => {
+            ele.addEventListener("click", (e) => {
+                close(e)
+            })
+        })
+        function open(e) {
+            if (e.srcElement.classList.contains("card")) {
+                e.srcElement.classList.add("open")
+                e.srcElement.classList.remove("close")
+                document.body.classList.add("stop")
+            }
+
+        }
+        function close(e) {
+            e.preventDefault()
+            e.srcElement.parentElement.classList.remove("open")
+            e.srcElement.parentElement.classList.add("close")
+            document.body.classList.remove("stop")
+
+        }
+    </script>
+</body>
+
+</html>

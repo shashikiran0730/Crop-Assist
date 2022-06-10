@@ -1,0 +1,50 @@
+<div class="outer">
+    <div class="fert_res">
+
+    </div>
+    <div class="fertform">
+        <form class="form" method="POST" action="fertresult" onsubmit="fertsubmit(event)" name="fertform">
+            {% csrf_token %}
+            <div class="feild">
+                <label for="nno">Nitrogen</label>
+                <input type="number" id="nno" name="n">
+            </div>
+            <div class="feild">
+                <label for="pno">phosphorus</label>
+                <input type="number" id="pno" name="p">
+            </div>
+            <div class="feild">
+                <label for="kno">potasiaum</label>
+                <input type="number" id="kno" name="k">
+            </div>
+            <div class="feild">
+                <label for="cno">Crop</label>
+                <select id="cno" name="c">
+                    {% for i in oplist %}
+                    <option value={{i}}>{{i}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="feild">
+                <button type="submit">Get</button>
+            </div>
+        </form>
+        <script>
+            function fertsubmit(e) {
+                var form = document.forms["fertform"]
+                var n = form["n"].value
+                var p = form["p"].value
+                var k = form["k"].value
+                var c = form["c"].value
+                var values = { "n": n, "p": p, "k": k, "c": c }
+                $.get("/fertresult?n=" + n + "&p=" + p + "&k=" + k + "&c=" + c).then(res => {
+                    console.log(res)
+                    var r = "<div class='rmain'>" + "<b>" + res.result + "</b>" + res.ver + "</div>"
+                    var desc = "<div>" + res.desc + "</div>"
+                    $(".fert_res").html(r + desc)
+                })
+                e.preventDefault()
+            }
+        </script>
+    </div>
+</div>

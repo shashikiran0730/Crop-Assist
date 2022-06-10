@@ -1,0 +1,54 @@
+<div class="imform">
+    <div class="lfdes">
+
+    </div>
+    <div class="lform">
+        <div id="upbut" onclick="clk()">
+            <div id="ubutit">Upload</div>
+        </div>
+        <form action="leafpred" enctype="multipart/form-data" method="POST" id="form" onsubmit="leafsubmit(event)">
+            {% csrf_token %}
+            <input type="file" name="leaf" id="inf" onchange="upd(event)">
+            <button type="submit" id="subut">Check</button>
+        </form>
+    </div>
+</div>
+<script>
+
+    function upd(e) {
+        $("#ubutit").html(e.target.files[0].name)
+    }
+
+    function clk() {
+        $("#inf").click()
+    }
+
+    function leafsubmit(e) {
+        e.preventDefault()
+        token = $("form").find('input[name=csrfmiddlewaretoken]').val()
+
+        jQuery.ajax({
+            type: 'POST',
+            url: "/leafpred",
+            csrfmiddlewaretoken: token,
+            data: new FormData($("#form")[0]),
+            processData: false,
+            contentType: false,
+            success: function (res) {
+                var v = ""
+                if (res.name == "Tomato_healthy") {
+                    v = `<div id="lres">${"Healthy"}</div>`
+                }
+                else {
+                    var k = res.name
+                    k = k.replace("Tomato", "")
+                    k = k.replaceAll("_", " ")
+
+                    v = `<div id="lres">${"Desease : " + k}</div>`
+                }
+                $(".lfdes").html(v)
+            }
+        });
+
+    }
+</script>

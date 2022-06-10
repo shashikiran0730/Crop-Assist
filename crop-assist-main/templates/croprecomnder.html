@@ -1,0 +1,63 @@
+<div class="whcrop ">
+    <div class="cropres">
+
+    </div>
+    <div class="cropform">
+        <form action="croprecomnder" method='POST' onsubmit="cropsubmit(event)" name="cropform">
+            {% csrf_token %}
+            <div class="feild">
+                <label for="nno">Nitrogen</label>
+                <input name="Ni" placeholder="" required>
+            </div>
+            <div class="feild">
+                <label for="pno">phosphorus</label>
+                <input name="p" placeholder="" required>
+            </div>
+            <div class="feild">
+                <label for="kno">potasiaum</label>
+                <input type="number" id="kno" name="k">
+            </div>
+            <div class="feild">
+                <label for="kno">temperature</label>
+                <input name="temp" placeholder="" required>
+            </div>
+            <div class="feild">
+                <label for="kno">humidity</label>
+                <input name="h" placeholder="" required>
+            </div>
+            <div class="feild">
+                <label for="kno">phvalue</label>
+                <input name="phvalue" placeholder="" required>
+            </div>
+            <div class="feild">
+                <label for="cno">rainfall</label>
+                <input name="rainfall" placeholder="" required>
+            </div>
+            <div class="feild">
+                <button type="submit">Get</button>
+            </div>
+        </form>
+    </div>
+    <script>
+        function cropsubmit(e) {
+            e.preventDefault()
+            var form = document.forms["cropform"]
+
+            var ni = form["Ni"].value
+            var p = form["p"].value
+            var k = form["k"].value
+            var temp = form["temp"].value
+            var h = form["h"].value
+            var phvalue = form["phvalue"].value
+            var rainfall = form["rainfall"].value
+
+            var url = "/croprecomnder?ni=" + ni + "&p=" + p + "&k=" + k + "&temp=" + temp + "&h=" + h + "&phvalue=" + phvalue + "&rainfall=" + rainfall
+
+            $.get(url).then(res => {
+                var res = `<div class='renm'>${res.result}</div><div class='imk'><img src='${res.img}'></div>`
+                $(".cropres").html(res)
+
+            })
+        }
+    </script>
+</div>

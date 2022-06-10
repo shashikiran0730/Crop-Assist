@@ -1,0 +1,192 @@
+.cardcon {
+  width: 100vw;
+  display: flex;
+  justify-content: space-around;
+}
+
+nav {
+  width: 100%;
+  height: 70px;
+  position: absolute;
+  top: 0px;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+}
+
+body {
+  margin: 0px;
+  padding: 0px;
+  filter: blur(20);
+  background-image: url("https://media.nationalgeographic.org/assets/photos/120/983/091a0e2f-b93d-481b-9a60-db520c87ec33.jpg");
+}
+
+body.stop {
+  overflow-y: hidden;
+}
+
+.rescard {
+  width: 80vw;
+  height: 70vh;
+}
+
+.result {
+  width: 80vw;
+  height: 70vh;
+}
+
+
+
+.home {
+  width: 100vw;
+  overflow: hidden;
+  height: 60vh;
+}
+
+.card {
+  height: 300px;
+  width: 300px;
+  background-color: white;
+  border-radius: 10px;
+  margin: 10px;
+  transition-property: all;
+  transition: 0.5s ease;
+  overflow: hidden;
+}
+
+.card.open {
+  width: 80vw;
+  height: 90vh;
+  position: fixed;
+  z-index: 99;
+  top: 5vh;
+  border: 1px solid grey;
+  animation: animate 0.5s ease;
+  transition-property: all;
+  overflow: hidden;
+  transition: 0.5s ease;
+}
+
+@keyframes animate {
+  from {
+    top: 50vh;
+    width: 300px;
+  }
+  to {
+    top: 5vh;
+    width: 80vw;
+  }
+}
+
+.card.close{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.952);
+}
+
+.card.close > .dis{
+position: relative;
+ width: 100%;
+ margin-left: auto;
+ margin-right: auto;
+ flex-wrap: wrap;
+ text-align: center;
+ cursor: pointer;
+}
+
+.card.close > .hid {
+  width: 0px;
+  height: 0px;
+  visibility: hidden;
+  display: none;
+}
+
+.card > .cls {
+  visibility: hidden;
+  transform: rotate(90deg);
+  width: fit-content;
+  height: fit-content;
+  font-size: 3rem;
+  float: right;
+  margin: 10px 20px;
+  transform: rotateZ(45deg);
+  cursor: pointer;
+  display: none;
+
+}
+
+.card.open > .cls {
+  visibility: visible;
+  display: flex;
+}
+
+.card.open>.dis {
+  visibility: visible;
+  text-align: center;
+}
+
+
+.card.open > .hid {
+  width: 100%;
+  visibility: visible;
+  height: 100%;
+}
+
+
+.form {
+  margin: 10px auto;
+}
+
+.feild {
+  width: 20vw;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.feild > input {
+  width: 100%;
+  height: 50px;
+  border-radius: 4px;
+  border: 1px solid black;
+  margin: 10px;
+}
+
+.feild > label {
+  text-transform: capitalize;
+  font-weight: bold;
+}
+
+.feild > select {
+  width: 100%;
+  height: 50px;
+  border-radius: 4px;
+  border: 1px solid black;
+  margin: 10px;
+}
+
+.feild > button {
+  width: 300px;
+  height: 50px;
+  margin-bottom: 200px;
+  margin-left: 10px;
+}
+
+#logo{
+  margin: 30px;
+  font-size: 2rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-transform: uppercase;
+}
+
+#pad{
+  height: 10vh;
+}
+
+.dis{
+  font-size: 1.4rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
